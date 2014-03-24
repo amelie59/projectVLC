@@ -4,6 +4,7 @@
  */
 package com.mycompany.projectvlc;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -32,6 +33,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
         panelVideo = new javax.swing.JPanel();
         panelBouton = new javax.swing.JPanel();
+        Play = new javax.swing.JButton();
+        Pause = new javax.swing.JButton();
+        Stop = new javax.swing.JButton();
         panelBtPlaylist = new javax.swing.JPanel();
         panelPlaylist = new javax.swing.JScrollPane();
 
@@ -39,16 +43,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         panelVideo.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout panelBoutonLayout = new javax.swing.GroupLayout(panelBouton);
-        panelBouton.setLayout(panelBoutonLayout);
-        panelBoutonLayout.setHorizontalGroup(
-            panelBoutonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelBoutonLayout.setVerticalGroup(
-            panelBoutonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 41, Short.MAX_VALUE)
-        );
+        Play.setText("jButton1");
+        panelBouton.add(Play);
+
+        Pause.setText("jButton2");
+        panelBouton.add(Pause);
+
+        Stop.setText("jButton3");
+        panelBouton.add(Stop);
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);
         panelBtPlaylist.setLayout(panelBtPlaylistLayout);
@@ -68,8 +70,8 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
-                    .addComponent(panelBouton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBouton, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(panelBtPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -89,8 +91,8 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelBouton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(54, Short.MAX_VALUE))))
+                        .addComponent(panelBouton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(40, Short.MAX_VALUE))))
         );
 
         pack();
@@ -146,11 +148,26 @@ public class NewJFrame extends javax.swing.JFrame {
     public JScrollPane getPanelPlaylist() {
         return panelPlaylist;
     }
+
+    public JButton getPlay() {
+        return Play;
+    }
+
+    public JButton getPause() {
+        return Pause;
+    }
+
+    public JButton getStop() {
+        return Stop;
+    }
     
     
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Pause;
+    private javax.swing.JButton Play;
+    private javax.swing.JButton Stop;
     private javax.swing.JPanel panelBouton;
     private javax.swing.JPanel panelBtPlaylist;
     private javax.swing.JScrollPane panelPlaylist;
