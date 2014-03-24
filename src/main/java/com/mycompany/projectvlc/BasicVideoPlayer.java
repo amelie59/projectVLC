@@ -4,9 +4,13 @@
  */
 package com.mycompany.projectvlc;
 
+import com.sun.jna.Native;
+import com.sun.jna.NativeLibrary;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 /**
  *
@@ -23,10 +27,12 @@ public class BasicVideoPlayer {
     
     public static void main( final String[] args )
     {
+        NativeLibrary.addSearchPath(RuntimeUtil.getLibVlcLibraryName(), "C:\\Program Files\\VideoLAN\\VLC");
         SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    new BasicVideoPlayer(args);
+                     Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(), LibVlc.class);
+                   new BasicVideoPlayer(args);
                 }
             });
     }
