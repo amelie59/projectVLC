@@ -1,5 +1,6 @@
 package com.mycompany.projectvlc;
 
+import com.mycompany.projectvlc.BasicVideoPlayer;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLibrary;
 import uk.co.caprica.vlcj.binding.LibVlc;
@@ -17,5 +18,6 @@ public class App
                 RuntimeUtil.getLibVlcLibraryName(), "D:\\Program Files\\VLC\\sdk\\lib"
             );
             Native.loadLibrary(RuntimeUtil.getLibVlcLibraryName(), LibVlc.class);
+            BasicVideoPlayer.main(args);
     }
 }
