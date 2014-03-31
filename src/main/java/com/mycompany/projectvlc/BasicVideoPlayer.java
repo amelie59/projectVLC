@@ -11,6 +11,8 @@ import com.sun.jna.NativeLibrary;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,6 +45,7 @@ public class BasicVideoPlayer {
         });
     }
 
+
     private BasicVideoPlayer(String[] args) {
 
 
@@ -53,6 +56,14 @@ public class BasicVideoPlayer {
         JScrollPane pnPlaylist = frame.getPanelPlaylist();
         JPanel pnBtVideo = frame.getPanelBouton();
         JPanel pnBtPlaylist = frame.getPanelBtPlaylist();
+        
+        JButton btPlay = frame.getPlay();
+        JButton btPause = frame.getPause();
+        JButton btStop = frame.getStop();
+        
+        btPlay.addActionListener(new ButtonPlayListener());
+        btPause.addActionListener(new ButtonPauseListener());
+        btStop.addActionListener(new ButtonStopListener());
        //frame.getContentPane().add(panelVideo);
 
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
@@ -64,6 +75,33 @@ public class BasicVideoPlayer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        mediaPlayerComponent.getMediaPlayer().playMedia("D:\\Perso\\Video\\Greys.Anatomy.S10E11.PROPER.VOSTFR.HDTV.XviD-ATeam\\GAS10e11.avi");
+        mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/h264_720p_hp_5.1_6mbps_ac3_planet.mp4");
+        
+    }
+
+    class ButtonStopListener implements ActionListener 
+    {
+
+        public void actionPerformed(ActionEvent e) 
+        {
+            mediaPlayerComponent.getMediaPlayer().stop();
+        }
+
+    }
+
+    class ButtonPauseListener implements ActionListener 
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            mediaPlayerComponent.getMediaPlayer().pause();
+        }
+    }
+
+    class ButtonPlayListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) 
+        {
+            mediaPlayerComponent.getMediaPlayer().play();
+        }
     }
 }

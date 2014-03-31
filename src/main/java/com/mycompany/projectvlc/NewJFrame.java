@@ -44,6 +44,11 @@ public class NewJFrame extends javax.swing.JFrame {
         panelVideo.setLayout(new java.awt.BorderLayout());
 
         Play.setText("Play");
+        Play.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlayActionPerformed(evt);
+            }
+        });
         panelBouton.add(Play);
 
         Pause.setText("Pause");
@@ -98,6 +103,10 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -132,6 +141,9 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+   
 
     public JPanel getPanelVideo() {
         return panelVideo;
