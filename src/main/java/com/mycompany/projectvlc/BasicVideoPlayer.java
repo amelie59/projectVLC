@@ -60,10 +60,12 @@ public class BasicVideoPlayer {
         JButton btPlayPause = frame.getPlay();
         JButton btStop = frame.getStop();
         JButton btRejouer = frame.getRejouer();
+        JButton btMute = frame.getMute();
         
         btPlayPause.addActionListener(new ButtonPlayPauseListener(btPlayPause));
         btStop.addActionListener(new ButtonStopListener());
         btRejouer.addActionListener(new ButtonRejouerListener());
+        btMute.addActionListener(new ButtonMuteListener(btMute));
        //frame.getContentPane().add(panelVideo);
 
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
@@ -77,6 +79,29 @@ public class BasicVideoPlayer {
 
         mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/h264_720p_hp_5.1_6mbps_ac3_planet.mp4");
         
+    }
+
+    class ButtonMuteListener implements ActionListener 
+    {
+        
+        JButton bt = new JButton();
+
+        public ButtonMuteListener(JButton button) {
+            this.bt = button;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            if (mediaPlayerComponent.getMediaPlayer().isMute())
+            {
+                mediaPlayerComponent.getMediaPlayer().mute(false);
+                bt.setText("Mute");
+            }
+            else
+            {
+                mediaPlayerComponent.getMediaPlayer().mute(true);
+                bt.setText("no Mute");
+            }
+        }
     }
 
     class ButtonRejouerListener implements ActionListener {

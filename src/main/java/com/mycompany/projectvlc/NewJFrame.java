@@ -36,6 +36,7 @@ public class NewJFrame extends javax.swing.JFrame {
         PlayPause = new javax.swing.JButton();
         Stop = new javax.swing.JButton();
         Rejouer = new javax.swing.JButton();
+        Mute = new javax.swing.JButton();
         panelBtPlaylist = new javax.swing.JPanel();
         panelPlaylist = new javax.swing.JScrollPane();
 
@@ -56,6 +57,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         Rejouer.setText("Rejouer");
         panelBouton.add(Rejouer);
+
+        Mute.setText("Mute");
+        Mute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MuteActionPerformed(evt);
+            }
+        });
+        panelBouton.add(Mute);
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);
         panelBtPlaylist.setLayout(panelBtPlaylistLayout);
@@ -106,6 +115,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void PlayPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayPauseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PlayPauseActionPerformed
+
+    private void MuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MuteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MuteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,10 +189,15 @@ public class NewJFrame extends javax.swing.JFrame {
         return Rejouer;
     }
     
+    public JButton getMute()
+    {
+        return Mute;
+    }
     
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Mute;
     private javax.swing.JButton PlayPause;
     private javax.swing.JButton Rejouer;
     private javax.swing.JButton Stop;

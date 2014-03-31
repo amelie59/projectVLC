@@ -87,6 +87,14 @@
             <Property name="text" type="java.lang.String" value="Rejouer"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="Mute">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mute"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MuteActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="panelBtPlaylist">
