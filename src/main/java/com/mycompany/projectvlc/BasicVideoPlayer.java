@@ -57,13 +57,13 @@ public class BasicVideoPlayer {
         JPanel pnBtVideo = frame.getPanelBouton();
         JPanel pnBtPlaylist = frame.getPanelBtPlaylist();
         
-        JButton btPlay = frame.getPlay();
-        JButton btPause = frame.getPause();
+        JButton btPlayPause = frame.getPlay();
         JButton btStop = frame.getStop();
+        JButton btRejouer = frame.getRejouer();
         
-        btPlay.addActionListener(new ButtonPlayListener());
-        btPause.addActionListener(new ButtonPauseListener());
+        btPlayPause.addActionListener(new ButtonPlayPauseListener(btPlayPause));
         btStop.addActionListener(new ButtonStopListener());
+        btRejouer.addActionListener(new ButtonRejouerListener());
        //frame.getContentPane().add(panelVideo);
 
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
@@ -79,6 +79,16 @@ public class BasicVideoPlayer {
         
     }
 
+    class ButtonRejouerListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            mediaPlayerComponent.getMediaPlayer().stop();
+            mediaPlayerComponent.getMediaPlayer().start();
+        }
+
+        
+    }
+
     class ButtonStopListener implements ActionListener 
     {
 
@@ -89,19 +99,31 @@ public class BasicVideoPlayer {
 
     }
 
-    class ButtonPauseListener implements ActionListener 
-    {
-        public void actionPerformed(ActionEvent e) 
-        {
-            mediaPlayerComponent.getMediaPlayer().pause();
-        }
-    }
+    
 
-    class ButtonPlayListener implements ActionListener
+    class ButtonPlayPauseListener implements ActionListener
     {
+        JButton bt = new JButton();
+
+        public ButtonPlayPauseListener(JButton button) {
+            this.bt = button;
+        }
+        
+        
+        
         public void actionPerformed(ActionEvent e) 
         {
-            mediaPlayerComponent.getMediaPlayer().play();
+            if(mediaPlayerComponent.getMediaPlayer().isPlaying())
+            {
+                mediaPlayerComponent.getMediaPlayer().pause();
+                bt.setText("Play");
+            }
+            else
+            {
+                mediaPlayerComponent.getMediaPlayer().play();
+                bt.setText("Pause");
+                
+            }
         }
     }
 }

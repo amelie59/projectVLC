@@ -69,22 +69,22 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="Play">
+        <Component class="javax.swing.JButton" name="PlayPause">
           <Properties>
             <Property name="text" type="java.lang.String" value="Play"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlayActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PlayPauseActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="Pause">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pause"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="Stop">
           <Properties>
             <Property name="text" type="java.lang.String" value="Stop"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Rejouer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Rejouer"/>
           </Properties>
         </Component>
       </SubComponents>

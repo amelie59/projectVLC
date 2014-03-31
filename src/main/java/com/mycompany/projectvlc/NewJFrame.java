@@ -33,9 +33,9 @@ public class NewJFrame extends javax.swing.JFrame {
 
         panelVideo = new javax.swing.JPanel();
         panelBouton = new javax.swing.JPanel();
-        Play = new javax.swing.JButton();
-        Pause = new javax.swing.JButton();
+        PlayPause = new javax.swing.JButton();
         Stop = new javax.swing.JButton();
+        Rejouer = new javax.swing.JButton();
         panelBtPlaylist = new javax.swing.JPanel();
         panelPlaylist = new javax.swing.JScrollPane();
 
@@ -43,19 +43,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
         panelVideo.setLayout(new java.awt.BorderLayout());
 
-        Play.setText("Play");
-        Play.addActionListener(new java.awt.event.ActionListener() {
+        PlayPause.setText("Play");
+        PlayPause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlayActionPerformed(evt);
+                PlayPauseActionPerformed(evt);
             }
         });
-        panelBouton.add(Play);
-
-        Pause.setText("Pause");
-        panelBouton.add(Pause);
+        panelBouton.add(PlayPause);
 
         Stop.setText("Stop");
         panelBouton.add(Stop);
+
+        Rejouer.setText("Rejouer");
+        panelBouton.add(Rejouer);
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);
         panelBtPlaylist.setLayout(panelBtPlaylistLayout);
@@ -103,9 +103,9 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayActionPerformed
+    private void PlayPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayPauseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PlayActionPerformed
+    }//GEN-LAST:event_PlayPauseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,23 +162,26 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     public JButton getPlay() {
-        return Play;
+        return PlayPause;
     }
 
-    public JButton getPause() {
-        return Pause;
-    }
+   
 
     public JButton getStop() {
         return Stop;
+    }
+    
+    public JButton getRejouer()
+    {
+        return Rejouer;
     }
     
     
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Pause;
-    private javax.swing.JButton Play;
+    private javax.swing.JButton PlayPause;
+    private javax.swing.JButton Rejouer;
     private javax.swing.JButton Stop;
     private javax.swing.JPanel panelBouton;
     private javax.swing.JPanel panelBtPlaylist;
