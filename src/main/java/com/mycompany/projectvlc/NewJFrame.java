@@ -43,13 +43,13 @@ public class NewJFrame extends javax.swing.JFrame {
 
         panelVideo.setLayout(new java.awt.BorderLayout());
 
-        Play.setText("jButton1");
+        Play.setText("Play");
         panelBouton.add(Play);
 
-        Pause.setText("jButton2");
+        Pause.setText("Pause");
         panelBouton.add(Pause);
 
-        Stop.setText("jButton3");
+        Stop.setText("Stop");
         panelBouton.add(Stop);
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);

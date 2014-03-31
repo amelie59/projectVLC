@@ -71,17 +71,17 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="Play">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="Play"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="Pause">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
+            <Property name="text" type="java.lang.String" value="Pause"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="Stop">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton3"/>
+            <Property name="text" type="java.lang.String" value="Stop"/>
           </Properties>
         </Component>
       </SubComponents>
