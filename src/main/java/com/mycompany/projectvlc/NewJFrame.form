@@ -24,12 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelVideo" max="32767" attributes="0"/>
-                  <Component id="panelBouton" pref="740" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panelVideo" pref="752" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="panelBouton" alignment="0" pref="764" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="panelBtPlaylist" max="32767" attributes="0"/>
                   <Component id="panelPlaylist" pref="262" max="32767" attributes="0"/>
@@ -94,6 +96,10 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MuteActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JSlider" name="Slider">
+        </Component>
+        <Component class="javax.swing.JSlider" name="VolumeSlider">
         </Component>
       </SubComponents>
     </Container>

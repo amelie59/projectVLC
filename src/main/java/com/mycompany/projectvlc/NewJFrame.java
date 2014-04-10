@@ -7,6 +7,7 @@ package com.mycompany.projectvlc;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 
 /**
  *
@@ -37,6 +38,8 @@ public class NewJFrame extends javax.swing.JFrame {
         Stop = new javax.swing.JButton();
         Rejouer = new javax.swing.JButton();
         Mute = new javax.swing.JButton();
+        Slider = new javax.swing.JSlider();
+        VolumeSlider = new javax.swing.JSlider();
         panelBtPlaylist = new javax.swing.JPanel();
         panelPlaylist = new javax.swing.JScrollPane();
 
@@ -65,6 +68,8 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         panelBouton.add(Mute);
+        panelBouton.add(Slider);
+        panelBouton.add(VolumeSlider);
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);
         panelBtPlaylist.setLayout(panelBtPlaylistLayout);
@@ -82,11 +87,12 @@ public class NewJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBouton, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE))
+                    .addComponent(panelBouton, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(panelBtPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
@@ -194,13 +200,29 @@ public class NewJFrame extends javax.swing.JFrame {
         return Mute;
     }
     
+   
+    
+    public JSlider getSlider()
+    {
+        return Slider;
+    }
+
+    public JSlider getVolumeSlider() 
+    {
+        return VolumeSlider;
+    }
+    
+    
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Mute;
     private javax.swing.JButton PlayPause;
     private javax.swing.JButton Rejouer;
+    private javax.swing.JSlider Slider;
     private javax.swing.JButton Stop;
+    private javax.swing.JSlider VolumeSlider;
     private javax.swing.JPanel panelBouton;
     private javax.swing.JPanel panelBtPlaylist;
     private javax.swing.JScrollPane panelPlaylist;
