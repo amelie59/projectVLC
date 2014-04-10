@@ -71,6 +71,9 @@ public class BasicVideoPlayer {
     private Boolean playing = false;
     private MediaPlayer player;
     private int volume = 50;
+    private int indice_ligne = 1;
+    private int indice_colonne = 1;
+    private int duration = 0;
     
 
     class ThreadSlider extends Thread {
@@ -99,7 +102,7 @@ public class BasicVideoPlayer {
            
             int cursorPosition = 0;
             
-            mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/h264_720p_hp_5.1_6mbps_ac3_planet.mp4");
+            mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
             
             slider.setMinimum(0);
             slider.setMaximum(500);
@@ -108,6 +111,7 @@ public class BasicVideoPlayer {
             slider.setPaintTicks(true);
             slider.setPaintLabels(true);
             slider.setValue(0);
+            
             
             
             volumeSlider.setMinimum(0);
@@ -151,6 +155,17 @@ public class BasicVideoPlayer {
             
             while(true)
             {
+                if (player.isPlaying())
+                {
+                    duration = (int) player.getLength()/1000;
+                    slider.setMaximum(duration);
+                    slider.setMajorTickSpacing(duration);
+                    slider.setMinorTickSpacing(duration/10);
+                    slider.setPaintTicks(true);
+                    slider.setPaintLabels(true);
+                    
+                }
+                
                     if((slider.getValue() != player.getTime()/1000) && (slider.getValue()-1 != player.getTime()/1000)
                             && (slider.getValue()+1 != player.getTime()/1000))
                     {
@@ -210,14 +225,17 @@ public class BasicVideoPlayer {
                  tableauPlayListFrame.addMouseListener(new MouseAdapter(){
                      public void mouseClicked(MouseEvent e){
                          if(e.getClickCount()==2){
-                             int indice_ligne = tableauPlayListFrame.getSelectedRow();
-                             int indice_colonne = tableauPlayListFrame.getSelectedColumn();
+                             indice_ligne = tableauPlayListFrame.getSelectedRow();
+                             indice_colonne = tableauPlayListFrame.getSelectedColumn();
                             // System.out.println("double click sur ligne :"+ indice_ligne + " et colonne : " + indice_colonne);
                              System.out.println("le fichier sélectionné est : " + tableauPlayListFrame.getValueAt(indice_ligne, 0));
                              
                              mediaPlayerComponent.getMediaPlayer().playMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2) );
                              slider.setValue(0);
                              positionInMovie = 0;
+                             player.stop();
+                             player.start();
+                             btPlayPause.setText("Pause");
                          }
                      }
                  });
@@ -278,8 +296,23 @@ public class BasicVideoPlayer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        
-        
+        while(true)
+        {
+            if(player.getMediaPlayerState().toString() == "libvlc_Ended")
+            {
+                indice_colonne++;
+                indice_ligne++;
+                mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
+                player.stop();
+                player.start();
+                btPlayPause.setText("Pause");
+            }
+            try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(BasicVideoPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
         
         
         }
@@ -310,7 +343,7 @@ public class BasicVideoPlayer {
 
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
         
-        mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/h264_720p_hp_5.1_6mbps_ac3_planet.mp4");
+        mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
         player = mediaPlayerComponent.getMediaPlayer();
         
         
