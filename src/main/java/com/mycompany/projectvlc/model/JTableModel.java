@@ -44,7 +44,8 @@ public class JTableModel extends AbstractTableModel {
            
      @Override
             public boolean isCellEditable(int row, int col){
-                return true;
+                // true si l'on veut pouvoir modifier les celulles, false ds le cas contraire
+                return false;
             }
            
      @Override

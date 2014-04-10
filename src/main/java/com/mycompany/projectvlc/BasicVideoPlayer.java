@@ -15,6 +15,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -197,14 +199,28 @@ public class BasicVideoPlayer {
             System.out.println("Running : " + this.threadName);
            for(int i =0; i<files.length; i++){
                System.out.println("Fichier" + files[i].getName());
-               tableauPlayList.setValueAt(files[i].getName(), i, 0);
-                        
+               tableauPlayList.setValueAt(files[i].getName().substring(0, files[i].getName().indexOf('.')), i, 0); 
+               tableauPlayList.setValueAt(files[i].getName().substring(files[i].getName().lastIndexOf(".")), i, 2);         
                 }
-             tableauPlayListFrame.setModel(tableauPlayList);
-             tableauPlayListFrame.getColumnModel().getColumn(0).setHeaderValue("Nom du film");
+                 tableauPlayListFrame.setModel(tableauPlayList);
+                 tableauPlayListFrame.getColumnModel().getColumn(0).setHeaderValue("Nom du film");
                  tableauPlayListFrame.getColumnModel().getColumn(1).setHeaderValue("Durée");
                  tableauPlayListFrame.getColumnModel().getColumn(2).setHeaderValue("Genre");
             
+                 tableauPlayListFrame.addMouseListener(new MouseAdapter(){
+                     public void mouseClicked(MouseEvent e){
+                         if(e.getClickCount()==2){
+                             int indice_ligne = tableauPlayListFrame.getSelectedRow();
+                             int indice_colonne = tableauPlayListFrame.getSelectedColumn();
+                            // System.out.println("double click sur ligne :"+ indice_ligne + " et colonne : " + indice_colonne);
+                             System.out.println("le fichier sélectionné est : " + tableauPlayListFrame.getValueAt(indice_ligne, 0));
+                             
+                             mediaPlayerComponent.getMediaPlayer().playMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2) );
+                             slider.setValue(0);
+                             positionInMovie = 0;
+                         }
+                     }
+                 });
             
         }
     }
