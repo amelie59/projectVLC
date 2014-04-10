@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JTable;
 
 /**
  *
@@ -42,6 +43,7 @@ public class NewJFrame extends javax.swing.JFrame {
         VolumeSlider = new javax.swing.JSlider();
         panelBtPlaylist = new javax.swing.JPanel();
         panelPlaylist = new javax.swing.JScrollPane();
+        tableauPlayList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +83,25 @@ public class NewJFrame extends javax.swing.JFrame {
             panelBtPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 101, Short.MAX_VALUE)
         );
+
+        tableauPlayList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3"
+            }
+        ));
+        panelPlaylist.setViewportView(tableauPlayList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +232,10 @@ public class NewJFrame extends javax.swing.JFrame {
     {
         return VolumeSlider;
     }
+    public JTable getTablePlayList()
+    {
+        return tableauPlayList;
+    }
     
     
     
@@ -227,5 +252,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelBtPlaylist;
     private javax.swing.JScrollPane panelPlaylist;
     private javax.swing.JPanel panelVideo;
+    private javax.swing.JTable tableauPlayList;
     // End of variables declaration//GEN-END:variables
 }

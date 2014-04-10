@@ -5,6 +5,7 @@
 package com.mycompany.projectvlc;
 
 import com.mycompany.projectvlc.NewJFrame;
+import com.mycompany.projectvlc.model.JTableModel;
 import com.sun.jmx.snmp.BerDecoder;
 
 import com.sun.jna.Native;
@@ -14,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -21,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
@@ -43,11 +46,17 @@ public class BasicVideoPlayer {
      */
     private final EmbeddedMediaPlayerComponent mediaPlayerComponent;
     
+    private File repertoire = new File("/home/isen/Video");
+    File[] files = repertoire.listFiles();
+    
     private final NewJFrame frame = new NewJFrame();
     private final JPanel pnVideo = frame.getPanelVideo();
     private final JScrollPane pnPlaylist = frame.getPanelPlaylist();
     private final JPanel pnBtVideo = frame.getPanelBouton();
     private final JPanel pnBtPlaylist = frame.getPanelBtPlaylist();
+    JTable tableauPlayListFrame = frame.getTablePlayList();
+       // tableauPlayListFrame = new JTable(new JTableModel());
+      JTableModel tableauPlayList = new JTableModel();
         
     private final JButton btPlayPause = frame.getPlay();
     private final JButton btStop = frame.getStop();
@@ -186,7 +195,15 @@ public class BasicVideoPlayer {
         public void run ()
         {
             System.out.println("Running : " + this.threadName);
-           
+           for(int i =0; i<files.length; i++){
+               System.out.println("Fichier" + files[i].getName());
+               tableauPlayList.setValueAt(files[i].getName(), i, 0);
+                        
+                }
+             tableauPlayListFrame.setModel(tableauPlayList);
+             tableauPlayListFrame.getColumnModel().getColumn(0).setHeaderValue("Nom du film");
+                 tableauPlayListFrame.getColumnModel().getColumn(1).setHeaderValue("Durée");
+                 tableauPlayListFrame.getColumnModel().getColumn(2).setHeaderValue("Genre");
             
             
         }
