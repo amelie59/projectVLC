@@ -6,8 +6,19 @@
 
 package com.mycompany.projectvlc.model;
 
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
 import java.io.File;
+import java.io.IOException;
+import javax.swing.JComponent;
+import javax.swing.JTable;
+import javax.swing.TransferHandler;
+import javax.swing.TransferHandler.TransferSupport;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +27,7 @@ import javax.swing.table.AbstractTableModel;
 public class JTableModel extends AbstractTableModel {
     
     final Object donnees [][];
+      Object temp [][];
      final String[] entetes = {"Nom du film", "Durée", "Genre"};
      private File repertoire = new File("/home/isen/Video");
         File[] files = repertoire.listFiles();
@@ -53,5 +65,7 @@ public class JTableModel extends AbstractTableModel {
                 donnees[row][col] = val;
                 fireTableCellUpdated(row, col);
             }
-      
+     
+
+          
 }
