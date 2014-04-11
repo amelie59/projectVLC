@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
@@ -64,15 +65,18 @@ public class BasicVideoPlayer {
     private final JButton btStop = frame.getStop();
     private final JButton btRejouer = frame.getRejouer();
     private final JButton btMute = frame.getMute();
+    private final JButton btNext = frame.getNext();
+    private final JButton btPrevious = frame.getPrevious();
     private final JSlider slider = frame.getSlider();
-    private final JSlider volumeSlider = frame.getVolumeSlider();
+    private final JRadioButton loopPlay = frame.getLoopPlaylist();
+    private final JRadioButton randomPlay = frame.getRandomPlaylist();
     
     private int positionInMovie = 0;
     private Boolean playing = false;
     private MediaPlayer player;
     private int volume = 50;
-    private int indice_ligne = 1;
-    private int indice_colonne = 1;
+    private int indice_ligne = 0;
+    private int indice_colonne = 0;
     private int duration = 0;
     
 
@@ -114,14 +118,7 @@ public class BasicVideoPlayer {
             
             
             
-            volumeSlider.setMinimum(0);
-            volumeSlider.setMaximum(100);
-            volumeSlider.setMajorTickSpacing(100);
-            volumeSlider.setMinorTickSpacing(5);
-            volumeSlider.setPaintTicks(true);
-            volumeSlider.setPaintLabels(true);
-            volumeSlider.setValue(volume);
-            //volumeSlider.setSize(5, 25);
+            
             
             player.setVolume(volume);
             
@@ -231,11 +228,8 @@ public class BasicVideoPlayer {
                              System.out.println("le fichier sélectionné est : " + tableauPlayListFrame.getValueAt(indice_ligne, 0));
                              
                              mediaPlayerComponent.getMediaPlayer().playMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2) );
-                             slider.setValue(0);
-                             positionInMovie = 0;
-                             player.stop();
-                             player.start();
-                             btPlayPause.setText("Pause");
+                             btStop.doClick();
+                             btPlayPause.doClick();
                          }
                      }
                  });
@@ -283,6 +277,10 @@ public class BasicVideoPlayer {
         btStop.addActionListener(new ButtonStopListener(btPlayPause));
         btRejouer.addActionListener(new ButtonRejouerListener());
         btMute.addActionListener(new ButtonMuteListener(btMute));
+        btNext.addActionListener(new ButtonNextListener());
+        btPrevious.addActionListener(new ButtonPreviousListener());
+        loopPlay.addActionListener (new LoopPlaylistListener());
+        randomPlay.addActionListener(new RandomPlaylistListener());
         
         
        //frame.getContentPane().add(panelVideo);
@@ -298,14 +296,47 @@ public class BasicVideoPlayer {
 
         while(true)
         {
+            
+            if(indice_ligne < 1)
+            {
+                btNext.setEnabled(true);
+                btPrevious.setEnabled(false);
+            }
+            else if(indice_ligne >= (tableauPlayListFrame.getRowCount()-1))
+            {
+                btNext.setEnabled(false);
+                btPrevious.setEnabled(true);
+            }
+            else
+            {
+                btNext.setEnabled(true);
+                btPrevious.setEnabled(true);
+            }
+            
+            
             if(player.getMediaPlayerState().toString() == "libvlc_Ended")
             {
-                indice_colonne++;
-                indice_ligne++;
+                if(loopPlay.isSelected())
+                {
+                   // indice_colonne++;
+                    if (indice_ligne >= (tableauPlayListFrame.getRowCount()-1))
+                    {
+                        indice_ligne = 0;
+                    }
+                    else
+                    {
+                        indice_ligne++;
+                    }
+                }
+                else
+                {
+                    indice_ligne = (int) (Math.random() * (tableauPlayListFrame.getRowCount()-1));
+                }
+                
                 mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
-                player.stop();
-                player.start();
-                btPlayPause.setText("Pause");
+                
+                btStop.doClick();
+                btPlayPause.doClick();
             }
             try {
                     Thread.sleep(1000);
@@ -343,9 +374,13 @@ public class BasicVideoPlayer {
 
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
         
-        mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
-        player = mediaPlayerComponent.getMediaPlayer();
+        loopPlay.setSelected(true);
         
+        ThreadPlaylist threadPlaylist = new ThreadPlaylist("Thread Playlist");
+                threadPlaylist.start();
+
+                mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
+        player = mediaPlayerComponent.getMediaPlayer();
         
         ThreadVideo threadVideo = new ThreadVideo("Thread Video", args);
                 threadVideo.start();
@@ -353,9 +388,7 @@ public class BasicVideoPlayer {
                 ThreadSlider threadSlide = new ThreadSlider ("Thread Slide");
                 threadSlide.start();
                 
-                ThreadPlaylist threadPlaylist = new ThreadPlaylist("Thread Playlist");
-                threadPlaylist.start();
-
+                
        // JFrame frame = new JFrame("vlcj Tutorial");
         
         /*int cursorPosition = 0;
@@ -466,6 +499,34 @@ public class BasicVideoPlayer {
 
         
     }
+    
+    class ButtonNextListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            indice_ligne ++;
+            
+            mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
+                
+            btStop.doClick();
+            btPlayPause.doClick();
+        }
+
+        
+    }
+    
+    class ButtonPreviousListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            indice_ligne --;
+            
+            mediaPlayerComponent.getMediaPlayer().prepareMedia("/home/isen/Video/" + tableauPlayListFrame.getValueAt(indice_ligne, 0)+tableauPlayListFrame.getValueAt(indice_ligne, 2));
+                
+            btStop.doClick();
+            btPlayPause.doClick();
+        }
+
+        
+    }
 
     class ButtonStopListener implements ActionListener 
     {
@@ -485,6 +546,29 @@ public class BasicVideoPlayer {
 
     }
 
+    
+    class LoopPlaylistListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            if(loopPlay.isSelected())
+            {
+                randomPlay.setSelected(false);
+            }
+        }
+    }
+    
+    
+    class RandomPlaylistListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            if(randomPlay.isSelected())
+            {
+                loopPlay.setSelected(false);
+            }
+        }
+    }
     
 
     class ButtonPlayPauseListener implements ActionListener
