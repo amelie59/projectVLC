@@ -6,6 +6,7 @@ package com.mycompany.projectvlc;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTable;
@@ -33,21 +34,29 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         panelVideo = new javax.swing.JPanel();
         panelBouton = new javax.swing.JPanel();
+        Previous = new javax.swing.JButton();
         PlayPause = new javax.swing.JButton();
+        Next = new javax.swing.JButton();
         Stop = new javax.swing.JButton();
         Rejouer = new javax.swing.JButton();
         Mute = new javax.swing.JButton();
         Slider = new javax.swing.JSlider();
-        VolumeSlider = new javax.swing.JSlider();
         panelBtPlaylist = new javax.swing.JPanel();
+        loopPlaylist = new javax.swing.JRadioButton();
+        randomPlaylist = new javax.swing.JRadioButton();
         panelPlaylist = new javax.swing.JScrollPane();
         tableauPlayList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelVideo.setLayout(new java.awt.BorderLayout());
+
+        Previous.setText("|<<");
+        panelBouton.add(Previous);
 
         PlayPause.setText("Play");
         PlayPause.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +65,9 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
         panelBouton.add(PlayPause);
+
+        Next.setText(">>|");
+        panelBouton.add(Next);
 
         Stop.setText("Stop");
         panelBouton.add(Stop);
@@ -71,17 +83,34 @@ public class NewJFrame extends javax.swing.JFrame {
         });
         panelBouton.add(Mute);
         panelBouton.add(Slider);
-        panelBouton.add(VolumeSlider);
+
+        loopPlaylist.setText("Lecture en boucle");
+
+        randomPlaylist.setText("Lecture Aléatoire");
+        randomPlaylist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                randomPlaylistActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBtPlaylistLayout = new javax.swing.GroupLayout(panelBtPlaylist);
         panelBtPlaylist.setLayout(panelBtPlaylistLayout);
         panelBtPlaylistLayout.setHorizontalGroup(
             panelBtPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtPlaylistLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelBtPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loopPlaylist)
+                    .addComponent(randomPlaylist))
+                .addGap(53, 53, 53))
         );
         panelBtPlaylistLayout.setVerticalGroup(
             panelBtPlaylistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 101, Short.MAX_VALUE)
+            .addGroup(panelBtPlaylistLayout.createSequentialGroup()
+                .addComponent(loopPlaylist)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(randomPlaylist)
+                .addGap(0, 55, Short.MAX_VALUE))
         );
 
         tableauPlayList.setModel(new javax.swing.table.DefaultTableModel(
@@ -133,7 +162,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelPlaylist)
+                        .addComponent(panelPlaylist, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(panelBtPlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
@@ -154,6 +183,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void MuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MuteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MuteActionPerformed
+
+    private void randomPlaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomPlaylistActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_randomPlaylistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,14 +269,29 @@ public class NewJFrame extends javax.swing.JFrame {
         return Slider;
     }
 
-    public JSlider getVolumeSlider() 
-    {
-        return VolumeSlider;
-    }
+    
     public JTable getTablePlayList()
     {
         return tableauPlayList;
     }
+
+    public JRadioButton getLoopPlaylist() {
+        return loopPlaylist;
+    }
+
+    public JRadioButton getRandomPlaylist() {
+        return randomPlaylist;
+    }
+
+    public JButton getNext() {
+        return Next;
+    }
+
+    public JButton getPrevious() {
+        return Previous;
+    }
+    
+    
     
     
     
@@ -251,15 +299,20 @@ public class NewJFrame extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Mute;
+    private javax.swing.JButton Next;
     private javax.swing.JButton PlayPause;
+    private javax.swing.JButton Previous;
     private javax.swing.JButton Rejouer;
     private javax.swing.JSlider Slider;
     private javax.swing.JButton Stop;
-    private javax.swing.JSlider VolumeSlider;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JRadioButton loopPlaylist;
     private javax.swing.JPanel panelBouton;
     private javax.swing.JPanel panelBtPlaylist;
     private javax.swing.JScrollPane panelPlaylist;
     private javax.swing.JPanel panelVideo;
+    private javax.swing.JRadioButton randomPlaylist;
     private javax.swing.JTable tableauPlayList;
     // End of variables declaration//GEN-END:variables
 }
